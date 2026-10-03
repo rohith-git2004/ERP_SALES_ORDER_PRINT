@@ -1,5 +1,81 @@
-<div class="page"><header><div><div class="brand">EUROCLOUD</div><div class="muted">ERP Management System</div></div><div class="title"><h1>SALES ORDER</h1><span>Official Print</span></div></header>
-<div class="no-print toolbar"><button (click)="print()">Print</button></div>
-<section class="grid">@for(x of [['Order Number',order.voucherNumber],['Date',order.date],['Customer',order.customer],['Route Plan',order.routePlan],['Voucher Type',order.voucherType],['Status',order.status]]; track x[0]){<div><label>{{x[0]}}</label><strong>{{x[1]}}</strong></div>}</section>
-<table><thead><tr><th>Product</th><th>Code</th><th>Size</th><th>Qty</th><th>Rate</th><th>Total</th></tr></thead><tbody>@for(i of order.items;track i.code){<tr><td>{{i.name}}</td><td>{{i.code}}</td><td>{{i.size}}</td><td>{{i.qty}}</td><td>{{money(i.rate)}}</td><td>{{money(i.qty*i.rate)}}</td></tr>}</tbody></table>
-<section class="summary"><div>Subtotal <b>{{money(subtotal)}}</b></div><div>VAT (5%) <b>{{money(vat)}}</b></div><div class="grand">Grand Total <b>{{money(total)}}</b></div></section><footer>Prepared by: EuroCloud</footer></div>
+<div class="page">
+  <header>
+    <div>
+      <div class="brand">EUROCLOUD</div>
+      <div class="muted">ERP Management System</div>
+    </div>
+
+    <div class="title">
+      <h1>SALES ORDER</h1>
+      <span>Official Print</span>
+    </div>
+  </header>
+
+  <div class="no-print toolbar">
+    <button (click)="print()">Print</button>
+  </div>
+
+  <section class="grid">
+    @for (
+      x of [
+        ['Order Number', order.voucherNumber],
+        ['Date', order.date],
+        ['Customer', order.customer],
+        ['Route Plan', order.routePlan],
+        ['Voucher Type', order.voucherType],
+        ['Status', order.status]
+      ];
+      track x[0]
+    ) {
+      <div>
+        <label>{{ x[0] }}</label>
+        <strong>{{ x[1] }}</strong>
+      </div>
+    }
+  </section>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Code</th>
+        <th>Size</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (i of order.items; track i.code) {
+        <tr>
+          <td>{{ i.name }}</td>
+          <td>{{ i.code }}</td>
+          <td>{{ i.size }}</td>
+          <td>{{ i.qty }}</td>
+          <td>{{ money(i.orderRate) }}</td>
+          <td>{{ money(i.qty * i.orderRate) }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <section class="summary">
+    <div>
+      Subtotal
+      <b>{{ money(subtotal) }}</b>
+    </div>
+
+    <div>
+      VAT (5%)
+      <b>{{ money(vat) }}</b>
+    </div>
+
+    <div class="grand">
+      Grand Total
+      <b>{{ money(total) }}</b>
+    </div>
+  </section>
+
+  <footer>Prepared by: EuroCloud</footer>
+</div>
